@@ -1,9 +1,9 @@
-cinnamon-session (3.2.0-4~) UNRELEASED; urgency=medium
+cinnamon-session (3.2.0-4) unstable; urgency=medium
 
   * Add missing qt5 build parameter. (Closes: #847482)
     Thanks to James Lu for reporting.
 
- -- Maximiliano Curia <maxy@debian.org>  Tue, 03 Jan 2017 21:30:39 +0100
+ -- Maximiliano Curia <maxy@debian.org>  Tue, 03 Jan 2017 21:45:03 +0100
 
 cinnamon-session (3.2.0-3) unstable; urgency=medium
 
