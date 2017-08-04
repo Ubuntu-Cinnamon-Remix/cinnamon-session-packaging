@@ -79,11 +79,6 @@
  */
 #define CSM_MANAGER_PHASE_TIMEOUT 30 /* seconds */
 
-/* In the exit phase, all apps were already given the chance to inhibit the session end
- * At that stage we don't want to wait much for apps to respond, we want to exit, and fast.
- */
-#define CSM_MANAGER_EXIT_PHASE_TIMEOUT 1 /* seconds */
-
 #define MDM_FLEXISERVER_COMMAND "mdmflexiserver"
 #define MDM_FLEXISERVER_ARGS    "--startnew Standard"
 
@@ -100,8 +95,8 @@
 #define KEY_SHOW_FALLBACK_WARNING "show-fallback-warning"
 #define KEY_BLACKLIST             "autostart-blacklist"
 
-#define SCREENSAVER_SCHEMA        "org.cinnamon.desktop.screensaver"
-#define KEY_SLEEP_LOCK            "lock-enabled"
+#define POWER_SETTINGS_SCHEMA     "org.cinnamon.settings-daemon.plugins.power"
+#define KEY_LOCK_ON_SUSPEND       "lock-on-suspend"
 
 #define LOCKDOWN_SCHEMA           "org.cinnamon.desktop.lockdown"
 #define KEY_DISABLE_LOG_OUT       "disable-log-out"
@@ -157,7 +152,7 @@ struct CsmManagerPrivate
 
         GSettings              *settings;
         GSettings              *session_settings;
-        GSettings              *screensaver_settings;
+        GSettings              *power_settings;
         GSettings              *lockdown_settings;
 
         CsmSystem              *system;
@@ -192,8 +187,6 @@ enum {
 
 static guint signals [LAST_SIGNAL] = { 0 };
 
-static void     csm_manager_class_init  (CsmManagerClass *klass);
-static void     csm_manager_init        (CsmManager      *manager);
 static void     csm_manager_finalize    (GObject         *object);
 
 static void     maybe_save_session   (CsmManager *manager);
@@ -677,15 +670,6 @@ app_registered (CsmApp     *app,
 }
 
 static gboolean
-_client_failed_to_stop (const char *id,
-                        CsmClient  *client,
-                        gpointer    user_data)
-{
-        g_debug ("CsmManager: client failed to stop: %s, %s", csm_client_peek_id (client), csm_client_peek_app_id (client));
-        return FALSE;
-}
-
-static gboolean
 on_phase_timeout (CsmManager *manager)
 {
         GSList *a;
@@ -715,9 +699,6 @@ on_phase_timeout (CsmManager *manager)
         case CSM_MANAGER_PHASE_END_SESSION:
                 break;
         case CSM_MANAGER_PHASE_EXIT:
-                csm_store_foreach (manager->priv->clients,
-                                   (CsmStoreFunc)_client_failed_to_stop,
-                                   NULL);
                 break;
         default:
                 g_assert_not_reached ();
@@ -960,16 +941,11 @@ static void
 do_phase_exit (CsmManager *manager)
 {
         if (csm_store_size (manager->priv->clients) > 0) {
-                manager->priv->phase_timeout_id = g_timeout_add_seconds (CSM_MANAGER_EXIT_PHASE_TIMEOUT,
-                                                                         (GSourceFunc)on_phase_timeout,
-                                                                         manager);
-
                 csm_store_foreach (manager->priv->clients,
                                    (CsmStoreFunc)_client_stop,
                                    NULL);
-        } else {
-                end_phase (manager);
         }
+        end_phase (manager);
 }
 
 static gboolean
@@ -1135,8 +1111,8 @@ process_is_running (const char * name)
 static gboolean
 sleep_lock_is_enabled (CsmManager *manager)
 {
-        return g_settings_get_boolean (manager->priv->screensaver_settings,
-                                       KEY_SLEEP_LOCK);
+        return g_settings_get_boolean (manager->priv->power_settings,
+                                       KEY_LOCK_ON_SUSPEND);
 }
 
 static void
@@ -1145,7 +1121,7 @@ manager_perhaps_lock (CsmManager *manager)
         GError   *error;
         gboolean  ret;
 
-        /* only lock if gnome-screensaver is set to lock */
+        /* only lock if the user has selected 'lock-on-suspend' in power prefs */
         if (!sleep_lock_is_enabled (manager)) {
                 return;
         }
@@ -2724,9 +2700,9 @@ csm_manager_dispose (GObject *object)
                 manager->priv->session_settings = NULL;
         }
 
-        if (manager->priv->screensaver_settings) {
-                g_object_unref (manager->priv->screensaver_settings);
-                manager->priv->screensaver_settings = NULL;
+        if (manager->priv->power_settings) {
+                g_object_unref (manager->priv->power_settings);
+                manager->priv->power_settings = NULL;
         }
 
         if (manager->priv->lockdown_settings) {
@@ -2925,7 +2901,7 @@ csm_manager_init (CsmManager *manager)
 
         manager->priv->settings = g_settings_new (CSM_MANAGER_SCHEMA);
         manager->priv->session_settings = g_settings_new (SESSION_SCHEMA);
-        manager->priv->screensaver_settings = g_settings_new (SCREENSAVER_SCHEMA);
+        manager->priv->power_settings = g_settings_new (POWER_SETTINGS_SCHEMA);
         manager->priv->lockdown_settings = g_settings_new (LOCKDOWN_SCHEMA);
 
         manager->priv->inhibitors = csm_store_new ();
