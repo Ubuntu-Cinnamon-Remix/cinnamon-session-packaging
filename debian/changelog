@@ -1,3 +1,9 @@
+cinnamon-session (3.4.1-1~) UNRELEASED; urgency=medium
+
+  * New upstream release (3.4.1).
+
+ -- Maximiliano Curia <maxy@debian.org>  Fri, 04 Aug 2017 21:45:45 +0200
+
 cinnamon-session (3.2.0-4) unstable; urgency=medium
 
   * Add missing qt5 build parameter. (Closes: #847482)
