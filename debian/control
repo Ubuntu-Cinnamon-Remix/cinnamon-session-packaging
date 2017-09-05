@@ -63,6 +63,7 @@ Description: Cinnamon Session Manager - Minimal runtime
 
 Package: cinnamon-session-common
 Architecture: all
+Multi-Arch: foreign
 Depends: ${misc:Depends}
 Description: Cinnamon Session Manager - common files
  The Cinnamon Session Manager is in charge of starting the core components

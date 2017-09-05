@@ -1,6 +1,8 @@
 cinnamon-session (3.4.2-2~) UNRELEASED; urgency=medium
 
   * Add debian/patches: Update environment for dbus and systemd user-session.
+  * Make cinnamon-session-common Multi-Arch: foreign (closes: #874328)
+    Thanks to Hugh McMaster
 
  -- Fabio Fantoni <fantonifabio@tiscali.it>  Tue, 05 Sep 2017 11:33:10 +0200
 
