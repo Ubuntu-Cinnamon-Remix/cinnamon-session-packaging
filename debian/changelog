@@ -1,3 +1,9 @@
+cinnamon-session (3.4.2-2~) UNRELEASED; urgency=medium
+
+  * Add debian/patches: Update environment for dbus and systemd user-session.
+
+ -- Fabio Fantoni <fantonifabio@tiscali.it>  Tue, 05 Sep 2017 11:33:10 +0200
+
 cinnamon-session (3.4.2-1) unstable; urgency=medium
 
   [ Fabio Fantoni ]
