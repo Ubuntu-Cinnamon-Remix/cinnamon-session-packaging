@@ -52,10 +52,12 @@ struct _CsmSystemInterface
         gboolean (* can_switch_user)  (CsmSystem *system);
         gboolean (* can_stop)         (CsmSystem *system);
         gboolean (* can_restart)      (CsmSystem *system);
+        gboolean (* can_hybrid_sleep) (CsmSystem *system);
         gboolean (* can_suspend)      (CsmSystem *system);
         gboolean (* can_hibernate)    (CsmSystem *system);
         void     (* attempt_stop)     (CsmSystem *system);
         void     (* attempt_restart)  (CsmSystem *system);
+        void     (* hybrid_sleep)     (CsmSystem *system);
         void     (* suspend)          (CsmSystem *system);
         void     (* hibernate)        (CsmSystem *system);
         void     (* set_session_idle) (CsmSystem *system,
@@ -66,6 +68,7 @@ struct _CsmSystemInterface
                                        CsmInhibitorFlag  flags);
         void     (* remove_inhibitor) (CsmSystem        *system,
                                        const gchar      *id);
+        gboolean (* is_last_session_for_user) (CsmSystem *system);
 };
 
 enum _CsmSystemError {
@@ -85,6 +88,8 @@ gboolean   csm_system_can_stop         (CsmSystem *system);
 
 gboolean   csm_system_can_restart      (CsmSystem *system);
 
+gboolean   csm_system_can_hybrid_sleep (CsmSystem *system);
+
 gboolean   csm_system_can_suspend      (CsmSystem *system);
 
 gboolean   csm_system_can_hibernate    (CsmSystem *system);
@@ -92,6 +97,8 @@ gboolean   csm_system_can_hibernate    (CsmSystem *system);
 void       csm_system_attempt_stop     (CsmSystem *system);
 
 void       csm_system_attempt_restart  (CsmSystem *system);
+
+void       csm_system_hybrid_sleep     (CsmSystem *system);
 
 void       csm_system_suspend          (CsmSystem *system);
 
@@ -101,6 +108,8 @@ void       csm_system_set_session_idle (CsmSystem *system,
                                         gboolean   is_idle);
 
 gboolean   csm_system_is_login_session (CsmSystem *system);
+
+gboolean   csm_system_is_last_session_for_user (CsmSystem *system);
 
 void       csm_system_add_inhibitor    (CsmSystem        *system,
                                         const gchar      *id,
