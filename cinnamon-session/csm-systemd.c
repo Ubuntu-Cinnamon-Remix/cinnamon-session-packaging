@@ -370,6 +370,38 @@ csm_systemd_is_login_session (CsmSystem *system)
 }
 
 static gboolean
+csm_systemd_can_hybrid_sleep (CsmSystem *system)
+{
+        CsmSystemd *manager = CSM_SYSTEMD (system);
+        gchar *rv;
+        GVariant *res;
+        gboolean can_hybrid_sleep;
+
+        res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
+                                      "CanHybridSleep",
+                                      NULL,
+                                      0,
+                                      G_MAXINT,
+                                      NULL,
+                                      NULL);
+        if (!res) {
+                g_warning ("Calling CanHybridSleep failed. Check that logind is "
+                           "properly installed and pam_systemd is getting used at login.");
+                return FALSE;
+        }
+
+        g_variant_get (res, "(s)", &rv);
+        g_variant_unref (res);
+
+        can_hybrid_sleep = g_strcmp0 (rv, "yes") == 0 ||
+                      g_strcmp0 (rv, "challenge") == 0;
+
+        g_free (rv);
+
+        return can_hybrid_sleep;
+}
+
+static gboolean
 csm_systemd_can_suspend (CsmSystem *system)
 {
         CsmSystemd *manager = CSM_SYSTEMD (system);
@@ -434,6 +466,25 @@ csm_systemd_can_hibernate (CsmSystem *system)
 }
 
 static void
+hybrid_sleep_done (GObject      *source,
+                   GAsyncResult *result,
+                   gpointer      user_data)
+{
+        GDBusProxy *proxy = G_DBUS_PROXY (source);
+        GError *error = NULL;
+        GVariant *res;
+
+        res = g_dbus_proxy_call_finish (proxy, result, &error);
+
+        if (!res) {
+                g_warning ("Unable to send system to hybrid sleep: %s", error->message);
+                g_error_free (error);
+        } else {
+                g_variant_unref (res);
+        }
+}
+
+static void
 suspend_done (GObject      *source,
               GAsyncResult *result,
               gpointer      user_data)
@@ -469,6 +520,21 @@ hibernate_done (GObject      *source,
         } else {
                 g_variant_unref (res);
         }
+}
+
+static void
+csm_systemd_hybrid_sleep (CsmSystem *system)
+{
+        CsmSystemd *manager = CSM_SYSTEMD (system);
+
+        g_dbus_proxy_call (manager->priv->sd_proxy,
+                           "HybridSleep",
+                           g_variant_new ("(b)", TRUE),
+                           0,
+                           G_MAXINT,
+                           NULL,
+                           hybrid_sleep_done,
+                           manager);
 }
 
 static void
@@ -582,22 +648,85 @@ csm_systemd_remove_inhibitor (CsmSystem   *system,
         }
 }
 
+static gboolean
+csm_systemd_is_last_session_for_user (CsmSystem *system)
+{
+        char **sessions = NULL;
+        char *session = NULL;
+        gboolean is_last_session;
+        int ret, i;
+
+        ret = sd_pid_get_session (getpid (), &session);
+
+        if (ret != 0) {
+                return FALSE;
+        }
+
+        ret = sd_uid_get_sessions (getuid (), FALSE, &sessions);
+
+        if (ret <= 0) {
+                return FALSE;
+        }
+
+        is_last_session = TRUE;
+        for (i = 0; sessions[i]; i++) {
+                char *state = NULL;
+                char *type = NULL;
+
+                if (g_strcmp0 (sessions[i], session) == 0)
+                        continue;
+
+                ret = sd_session_get_state (sessions[i], &state);
+
+                if (ret != 0)
+                        continue;
+
+                if (g_strcmp0 (state, "closing") == 0) {
+                        free (state);
+                        continue;
+                }
+                free (state);
+
+                ret = sd_session_get_type (sessions[i], &type);
+
+                if (ret != 0)
+                        continue;
+
+                if (g_strcmp0 (type, "x11") != 0 &&
+                    g_strcmp0 (type, "wayland") != 0) {
+                        free (type);
+                        continue;
+                }
+
+                is_last_session = FALSE;
+        }
+
+        for (i = 0; sessions[i]; i++)
+                free (sessions[i]);
+        free (sessions);
+
+        return is_last_session;
+}
+
 static void
 csm_systemd_system_init (CsmSystemInterface *iface)
 {
         iface->can_switch_user = csm_systemd_can_switch_user;
         iface->can_stop = csm_systemd_can_stop;
         iface->can_restart = csm_systemd_can_restart;
+        iface->can_hybrid_sleep = csm_systemd_can_hybrid_sleep;
         iface->can_suspend = csm_systemd_can_suspend;
         iface->can_hibernate = csm_systemd_can_hibernate;
         iface->attempt_stop = csm_systemd_attempt_stop;
         iface->attempt_restart = csm_systemd_attempt_restart;
+        iface->hybrid_sleep = csm_systemd_hybrid_sleep;
         iface->suspend = csm_systemd_suspend;
         iface->hibernate = csm_systemd_hibernate;
         iface->set_session_idle = csm_systemd_set_session_idle;
         iface->is_login_session = csm_systemd_is_login_session;
         iface->add_inhibitor = csm_systemd_add_inhibitor;
         iface->remove_inhibitor = csm_systemd_remove_inhibitor;
+        iface->is_last_session_for_user = csm_systemd_is_last_session_for_user;
 }
 
 CsmSystemd *

@@ -1,5 +1,5 @@
 AC_INIT([cinnamon-session],
-        [3.4.2],
+        [3.6.0],
         [https://github.com/linuxmint/cinnamon-session/issues])
 
 AC_CONFIG_SRCDIR([cinnamon-session])
@@ -239,7 +239,7 @@ dnl Language Support
 dnl ====================================================================
 IT_PROG_INTLTOOL([0.40.6])
 
-GETTEXT_PACKAGE=cinnamon-session-3.0
+GETTEXT_PACKAGE=cinnamon-session
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE",
                    [The gettext translation domain])
 AC_SUBST(GETTEXT_PACKAGE)
