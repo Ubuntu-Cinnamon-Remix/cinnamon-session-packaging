@@ -33,7 +33,7 @@ Build-Depends:
  xmlto,
  xsltproc,
  xtrans-dev,
-Standards-Version: 3.9.8
+Standards-Version: 4.1.1
 Homepage: http://cinnamon.linuxmint.com
 Vcs-Browser: https://anonscm.debian.org/git/pkg-cinnamon/cinnamon-session.git
 Vcs-Git: https://anonscm.debian.org/git/pkg-cinnamon/cinnamon-session.git
