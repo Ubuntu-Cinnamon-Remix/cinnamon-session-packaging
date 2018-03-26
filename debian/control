@@ -10,7 +10,6 @@ Build-Depends:
  autoconf-archive,
  automake,
  debhelper (>= 11~),
- dh-autoreconf,
  gnome-pkg-tools (>= 0.13),
  intltool (>= 0.40.6),
  libcanberra-dev,
