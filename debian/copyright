@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: cinnamon-session
 Upstream-Contact: Linux Mint Project <root@linuxmint.com>
 Source: https://github.com/linuxmint/cinnamon-session
@@ -92,6 +92,11 @@ Files: cinnamon-session/csm-logout-dialog.h
 Copyright: 2006, Vincent Untz
 License: GPL-2+
 
+Files: debian/*
+Copyright: 2013-2014, Linux Mint Project <root@linuxmint.com>
+           2014-2018, Debian Cinnamon Team <debian-cinnamon@lists.debian.org>
+License: GPL-2+
+
 Files: egg/*
 Copyright: 2007, Novell, Inc
 License: LGPL-2+
@@ -108,11 +113,13 @@ Copyright: 1999-2000, Red Hat Inc
            2007, Novell, Inc
 License: LGPL-2+
 
+Files: po/Makefile.in.in
+Copyright: 2004-2008, Rodney Dawes <dobey.pwns@gmail.com>
+           1995-1997, Ulrich Drepper <drepper@gnu.ai.mit.edu>
+License: Permissive
+
 Files: doc/dbus/spec-to-docbook.xsl
-       po/tk.po
-Copyright: 2004, Free Software Foundation
-           2004, Kakilik Project <kakilik.sourceforge.net>
-           2007-2008, William Jon McCann
+Copyright: 2007-2008, William Jon McCann
 License: GPL
  This file is distributed under the terms of GNU General Public License (GPL)
  .
