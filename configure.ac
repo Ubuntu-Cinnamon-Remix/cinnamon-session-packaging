@@ -1,5 +1,5 @@
 AC_INIT([cinnamon-session],
-        [3.6.0],
+        [3.6.1],
         [https://github.com/linuxmint/cinnamon-session/issues])
 
 AC_CONFIG_SRCDIR([cinnamon-session])
@@ -108,6 +108,19 @@ fi
 
 AC_SUBST(LOGIND_CFLAGS)
 AC_SUBST(LOGIND_LIBS)
+
+dnl ====================================================================
+dnl Option to disable DBus user session support.
+dnl ====================================================================
+AC_ARG_ENABLE([dbus_user_session],
+              AS_HELP_STRING([--disable-dbus-user-session], [Disable support for DBus user sessions]),
+              [], [enable_dbus_user_session=yes])
+
+if test x$enable_dbus_user_session = xyes; then
+    AC_DEFINE(WITH_DBUS_USER_SESSION, 1, [Define to 1 if support for DBus user session is enabled])
+else
+    AC_DEFINE(WITH_DBUS_USER_SESSION, 0, [Define to 0 if support for DBus user session is disabled])
+fi
 
 dnl ====================================================================
 dnl Check for qt 5.7+ to set correct env var for theme/styling
@@ -371,6 +384,7 @@ echo "
 
         GConf support:            ${enable_gconf}
         Logind support:           ${have_logind}
+        DBus user session sup.:   ${enable_dbus_user_session}
         Qt 5.7+ theme support:    ${enable_qt57_theme_support}
         IPv6 support:             ${have_full_ipv6}
         Backtrace support:        ${have_backtrace}
