@@ -1,8 +1,13 @@
-cinnamon-session (3.6.1-2~1) UNRELEASED; urgency=medium
+cinnamon-session (3.8.1-1~1) UNRELEASED; urgency=medium
 
-  * New revision
+  [ Maximiliano Curia ]
   * Drop dh-autoreconf (no longer needed with dh >= 10)
   * Drop dh's parallel arg (no longer needed with dh >= 10)
+
+  [ Fabio Fantoni ]
+  * New upstream release (3.8.0).
+  * Update debian/copyright.
+  * Removed debian/patches/use_gtk3_with_qt.patch not needed anymore.
 
  -- Maximiliano Curia <maxy@debian.org>  Fri, 06 Apr 2018 10:45:54 +0200
 
