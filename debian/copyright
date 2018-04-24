@@ -4,7 +4,7 @@ Upstream-Contact: Linux Mint Project <root@linuxmint.com>
 Source: https://github.com/linuxmint/cinnamon-session
 
 Files: *
-           1998-2012, Free Software Foundation, Inc
+Copyright: 1998-2012, Free Software Foundation, Inc
            2000, Miguel de Icaza <miguel@helixcode.com>
            2006-2011, Novell, Inc
            2005-2012, Red Hat, Inc
