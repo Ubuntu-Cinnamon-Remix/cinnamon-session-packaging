@@ -77,11 +77,6 @@ Copyright: 1999-2000, Red Hat Inc
            2007, Novell, Inc
 License: LGPL-2+
 
-Files: po/Makefile.in.in
-Copyright: 2004-2008, Rodney Dawes <dobey.pwns@gmail.com>
-           1995-1997, Ulrich Drepper <drepper@gnu.ai.mit.edu>
-License: Permissive
-
 Files: doc/dbus/spec-to-docbook.xsl
 Copyright: 2007-2008, William Jon McCann
 License: GPL
@@ -133,8 +128,3 @@ License: LGPL-2+
  .
  On Debian systems, the complete text of the GNU Lesser General Public License
  version 2 can be found in `/usr/share/common-licenses/LGPL-2'.
-
-License: Permissive
- This file is free software; the Free Software Foundation gives
- unlimited permission to copy and/or distribute it, with or without
- modifications, as long as this notice is preserved.
