@@ -6,15 +6,14 @@ export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 	dh $@
 
 override_dh_auto_configure:
-		dh_auto_configure -- \
-		-Dwith-docbook=true \
-		-Dwith-frequent-warnings=true \
-		-Dwith-gconf=false \
-		-Dwith-ipv6=true \
-		-Dwith-xtrans=true
+	dh_auto_configure -- \
+	    -Dwith-docbook=true \
+	    -Dwith-frequent-warnings=true \
+	    -Dwith-gconf=false \
+	    -Dwith-ipv6=true \
+	    -Dwith-xtrans=true
 
 # --list-missing will be default in compat 12
 override_dh_missing:
 	dh_missing --list-missing
-
 
