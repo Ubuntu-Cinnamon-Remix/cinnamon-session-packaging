@@ -46,8 +46,11 @@ Depends:
  upower (>= 0.9.0),
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: cinnamon-l10n
-Breaks: cinnamon (<< 3.6), cinnamon-session-common (<< 2.2.2-5~)
+Recommends: cinnamon-l10n (>= 3.8)
+Breaks:
+ cinnamon (<< 3.8),
+ cinnamon-core (<< 3.8~),
+ cinnamon-session-common (<< 2.2.2-5~),
 Replaces: cinnamon-session-common (<< 2.2.2-5~)
 Provides: x-session-manager
 Description: Cinnamon Session Manager - Minimal runtime
