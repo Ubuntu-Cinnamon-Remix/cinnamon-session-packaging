@@ -1,4 +1,4 @@
-cinnamon-session (3.8.1-1~3) UNRELEASED; urgency=medium
+cinnamon-session (3.8.1-1~5) UNRELEASED; urgency=medium
 
   [ Maximiliano Curia ]
   * Drop dh-autoreconf (no longer needed with dh >= 10)
@@ -8,7 +8,6 @@ cinnamon-session (3.8.1-1~3) UNRELEASED; urgency=medium
   * Enable hardening bindnow
   * Install the libexec files in a private dir
   * Bump group breaks (3.8)
-  * Fix logout error
 
   [ Fabio Fantoni ]
   * New upstream release (3.8.0).
@@ -16,7 +15,7 @@ cinnamon-session (3.8.1-1~3) UNRELEASED; urgency=medium
   * Removed debian/patches/use_gtk3_with_qt.patch not needed anymore.
   * fix debian/copyright
 
- -- Maximiliano Curia <maxy@debian.org>  Fri, 04 May 2018 11:31:53 +0200
+ -- Maximiliano Curia <maxy@debian.org>  Fri, 04 May 2018 11:52:19 +0200
 
 cinnamon-session (3.6.1-1) unstable; urgency=medium
 
