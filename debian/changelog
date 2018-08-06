@@ -1,0 +1,363 @@
+cinnamon-session (3.8.2) tara; urgency=medium
+
+  [ itzexor ]
+  * build: fix PKGDATADIR define / use only one define
+
+  [ Clement Lefebvre ]
+  * Autostart: Don't let buggy GSettings condition break the session
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed, 04 Jul 2018 22:33:18 +0200
+
+cinnamon-session (3.8.1) tara; urgency=medium
+
+  [ Fabio Fantoni ]
+  * debian/rules: change libexecdir to the same of what debhelper do (#114)
+
+  [ Cobinja ]
+  * Fix generation of LOCALE_DIR (#115)
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 19 Apr 2018 12:06:01 +0100
+
+cinnamon-session (3.8.0) tara; urgency=medium
+
+  [ Clement Lefebvre ]
+  * Add CI configuration
+
+  [ Björn Esser ]
+  * csm-manager: Detect DBus user-session at runtime (#107)
+
+  [ krifisk ]
+  * Add support for elogind (#106)
+
+  [ Fabio Fantoni ]
+  * circleci: add install of updated cinnamon-desktop
+  * circleci: remove mint18 job
+
+  [ Salamandar ]
+  * Meson port (#108)
+
+  [ Eli Schwartz ]
+  * Stop trying to handle Qt integration at all (#102)
+
+  [ Clement Lefebvre ]
+  * Quit dialog: Don't skip taskbar
+
+  [ James Ross ]
+  * main: remove leftover qt theme support variable (#111)
+
+  [ Leigh Scott ]
+  * remove qt5 leftovers (#112)
+
+  [ Fabio Fantoni ]
+  * debian: wrap-and-sort -bst
+  * update debian/copyright
+  * small improves to debian/control
+  * switch from dbus-x11 to default-dbus-session-bus | dbus-session-bus
+  * Bump debhelper build-dep and compat to 10
+  * improve debian/rules
+  * debian: try to restore multiarch with meson without debhelper 11
+  * debian/rules: remove qt5 theme support option, was removed
+  * xapp version required is >=1.0.4
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed, 18 Apr 2018 11:46:24 +0100
+
+cinnamon-session (3.6.1) sylvia; urgency=medium
+
+  [ Björn Esser ]
+  * configure: Add option to disable support for DBus user sessions (#103)
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed, 22 Nov 2017 12:29:17 +0000
+
+cinnamon-session (3.6.0) sylvia; urgency=medium
+
+  [ Michael Webster ]
+  * add an issue template
+
+  [ Björn Esser ]
+  * Update environment for dbus and systemd user-session (#91)
+
+  [ JosephMcc ]
+  * Logout dialog: Don't grab the keyboard and mouse when opening the dialog (#95)
+
+  [ Michael Webster ]
+  * Add support for "hybrid sleep" (#93)
+
+  [ Clement Lefebvre ]
+  * Remove unused code
+  * l10n: Switch gettext schema to cinnamon-session (provided by cinnamon-translations)
+  * l10n: Remove translations (provided by cinnamon-translations)
+
+  [ JosephMcc ]
+  * csm-logout-dialog.c: Remove a couple uses of GtkStock (#100)
+
+  [ Björn Esser ]
+  * Restart dbus user-session if last graphical session (#99)
+
+  [ Clement Lefebvre ]
+  * l10n: Update POT file
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 23 Oct 2017 14:06:26 +0100
+
+cinnamon-session (3.4.1) sonya; urgency=medium
+
+  [ itzexor ]
+  * autostart-blacklist: add new gnome settings daemon prefix
+
+  [ Michael Webster ]
+  * csm-manager.c: Listen to the power schema 'lock-on-suspend' setting instead of the normal screensaver setting of 'lock when the screensaver starts'.
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue, 20 Jun 2017 15:27:12 +0200
+
+cinnamon-session (3.4.0) sonya; urgency=medium
+
+  [ leigh123linux ]
+  * Check stricter for presence of xtrans (with option to disable)
+  * remove aclocal from autogen
+  * Fix redundant redeclarations
+
+  [ Clement Lefebvre ]
+  * manager: don't wait for all clients to exit before exiting
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 04 May 2017 13:37:33 +0100
+
+cinnamon-session (3.2.0) serena; urgency=medium
+
+  [ Edgar Fournival ]
+  * removed old dialog icon code
+
+  [ leigh123linux ]
+  * gsettings: stop using g_settings_list_schemas()
+  * Fix spelling (wrong word used)
+
+  [ Dustin Falgout ]
+  * update .gitignore
+  * Add support for applying GTK style to QT apps when running QT 5.7+ Maintain backwards compatibility for earlier versions of QT.
+  * use build time option instead of pkgcheck for obvious reasons :sweat_smile:
+  * remove unecessary call to g_free
+  * Incorporated feedback
+
+  [ brownsr ]
+  * remove unused variable
+  * replace deprecated gtk_icon_info_free with g_object_unref
+
+  [ Dustin Falgout ]
+  * implement change described in PR comments related to "QT_STYLE_OVERRIDE" env var and qt versions 5.7+
+
+  [ leigh123linux ]
+  * main: fix heap overflow in dbus-launch wrapping
+
+  [ Maximiliano Curia ]
+  * Migrate away from gnome-common deprecated vars and macros
+
+  [ Clement Lefebvre ]
+  * Added cinnamon-session.pot and makepot
+  * Update POT file
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 07 Nov 2016 10:39:17 +0000
+
+cinnamon-session (3.0.1) sarah; urgency=medium
+
+  [ leigh123linux ]
+  * Add support PreDisplayServer phase to fix gnome-keyring ssh issue
+  * add new phase: CSM_MANAGER_PHASE_EARLY_INITIALIZATION, it's needed for PRE_DISPLAY_SERVER phase to run
+
+  [ Michael Webster ]
+  * main.c: Add support for disabling gtk overlay scrollbars
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri, 20 May 2016 12:02:48 +0100
+
+cinnamon-session (3.0.0) sarah; urgency=medium
+
+  [ Michael Webster ]
+  * main.c: remove CLUTTER_BACKEND=x11 (moved to cinnamon main.c)
+
+  [ monsta ]
+  * mdm: fix logic error
+  * fix a typo in a warning message
+
+  [ Clement Lefebvre ]
+  * [Fantu & Ralf Jung] Add a provides for x-session-manager
+  * Support new libsystemd (which replaces libsystemd-login)
+  * Fixed GTK regression in csm-inhibit-dialog https://github.com/linuxmint/cinnamon-session/issues/63
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat, 23 Apr 2016 16:16:12 +0100
+
+cinnamon-session (2.8.2) rosa; urgency=medium
+
+  * Autostart: Blacklist xfce4-power-manager
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 09 Nov 2015 10:27:09 +0000
+
+cinnamon-session (2.8.1) rosa; urgency=medium
+
+  [ pixunil ]
+  * csm-logout-dialog.c: Add "automatically" to the msgids of the countdown label This uses the already-translated msgid
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri, 30 Oct 2015 10:50:19 +0000
+
+cinnamon-session (2.8.0) rosa; urgency=medium
+
+  [ Clement Lefebvre ]
+  * Add a gsettings key to enable debug
+  * Reject new XSMP clients earlier in the shutdown path
+  * xsmp: Re-accept clients if session shutdown is cancelled
+  * Avoid to keep zombie clients in the case when a IceError is thrown between accept_ice_connection() and accept_xsmp_connection()
+  * Only wait 1 second max on logout/shutdown
+  * Log time delta in debug mode. Also, don't log dbus calls (they don't show much info and they're very numerous)
+  * Make QT5 apps follow the GTK style
+  * Make the session blacklist entirely configurable
+  * Replace indicator- with indicator-session in session blacklist
+  * Renamed blacklist -> autostart-blacklist
+
+  [ Fabio Fantoni ]
+  * remove unused debian/po-up
+  * remove some other unused files in debian folder
+  * update debian/copyright
+  * debian fixes and improvements
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri, 16 Oct 2015 14:11:22 +0100
+
+cinnamon-session (2.6.3) rafaela; urgency=medium
+
+  [ sina23GOGO12 ]
+  * fix update croatian translation
+
+  [ Michael Webster ]
+  * csm-manager: add a whitelist to override autostart hardcoded list. Our internal blacklist is pretty broad, and some indicator apps work fine using the systray without causing issues with cinnamon. This will let users override on a case-by-case basis for now.
+  * main.c: prevent overlay-scrollbar from loading. The ubuntu overlay-scrollbar GTK module doesn't respect the normal ways of enabling/disabling modules, and doesn't play nice anywhere but in Unity (broken themes, scrollbars).  Ideally this is done in cinnamon-settings-daemon, where our existing gtk module blacklist will handle the GTK_MODULES environment variable as well as what it currently does.  For a quick fix, just remove it at session start.
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sun, 14 Jun 2015 13:16:53 +0200
+
+cinnamon-session (2.6.2) rafaela; urgency=medium
+
+  [ leigh123linux ]
+  * bump version to account for cinnamon-desktop systemd schema change
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed, 27 May 2015 10:20:55 +0200
+
+cinnamon-session (2.6.1) rafaela; urgency=medium
+
+  * Replaced "use-systemd" with "session-manager-uses-logind" gsettings key
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 25 May 2015 10:36:27 +0200
+
+cinnamon-session (2.6.0) rafaela; urgency=medium
+
+  * 2.6.0 
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue, 19 May 2015 17:10:30 +0200
+
+cinnamon-session (2.5.1) unstable; urgency=medium
+
+  * 2.5.x
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue, 13 Jan 2015 09:47:17 +0100
+
+cinnamon-session (2.4.2) rebecca; urgency=medium
+
+  * cinnamon-session-properties: don't destroy self immediately upon closing,
+    to make sure any pending save operations are completed.
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed, 26 Nov 2014 22:32:46 +0100
+
+cinnamon-session (2.4.1) rebecca; urgency=medium
+
+  * Switched locale path to standard /usr/share/locale
+  * Re-Added session timeout, disable by default
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat, 08 Nov 2014 10:04:29 +0100
+
+cinnamon-session (2.4.0) rebecca; urgency=medium
+
+  * 2.4.0
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 30 Oct 2014 15:55:45 +0100
+
+cinnamon-session (2.3.0) unstable; urgency=medium
+
+  * 2.3.0
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri, 27 Jun 2014 14:35:44 +0100
+
+cinnamon-session (2.2.2) qiana; urgency=medium
+
+  * Make shutdown and failwhale dialogs use CENTER instead of CENTER_ALWAYS, to stop the small jump the dialogs usually make right after they pop up.
+  * Logout/Shutdown dialogs: Capture focus and keyboard input and block until dialog is closed.
+  * session-properties (startup programs): show 0 in the list when there is no startup delay defined, as well as a 0 in the spinner during item edit.
+  * Remove logging from previous commit
+  * Block ubuntu indicator-* services from starting.
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri, 27 Jun 2014 14:33:56 +0100
+
+cinnamon-session (2.2.1) qiana; urgency=medium
+
+  * 2.2.1
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 08 May 2014 10:35:56 +0100
+
+cinnamon-session (2.2.0) qiana; urgency=medium
+
+  * 2.2.0
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat, 12 Apr 2014 11:25:07 +0100
+
+cinnamon-session (2.0.6) petra; urgency=low
+
+  * 2.0.6
+
+ -- Clement Lefebvre <root@linuxmint.com>  Fri, 22 Nov 2013 10:57:34 +0000
+
+cinnamon-session (2.0.5) petra; urgency=low
+
+  * 2.0.5
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 07 Nov 2013 10:25:09 +0000
+
+cinnamon-session (2.0.4) petra; urgency=low
+
+  * 2.0.4
+
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 31 Oct 2013 13:34:50 +0000
+
+cinnamon-session (2.0.3) petra; urgency=low
+
+  * 2.0.3
+
+ -- Clement Lefebvre <root@linuxmint.com>  Tue, 29 Oct 2013 10:36:44 +0000
+
+cinnamon-session (2.0.2) petra; urgency=low
+
+  * 2.0.2
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sat, 26 Oct 2013 18:02:58 +0100
+
+cinnamon-session (2.0.1) petra; urgency=low
+
+  * 2.0.1
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed, 09 Oct 2013 10:53:19 +0100
+
+cinnamon-session (2.0.0) petra; urgency=low
+
+  * 2.0.0
+
+ -- Clement Lefebvre <root@linuxmint.com>  Wed, 02 Oct 2013 13:49:17 +0100
+
+cinnamon-session (1.9.2) petra; urgency=low
+
+  * 1.9.2
+
+ -- Clement Lefebvre <root@linuxmint.com>  Mon, 30 Sep 2013 13:53:34 +0100
+
+cinnamon-session (1.9.1) olivia; urgency=low
+
+  * Builds
+
+ -- Michael Webster <miketwebster@gmail.com>  Sun, 02 Jun 2013 19:27:15 -0400
+
+cinnamon-session (1.9.0) olivia; urgency=low
+
+  * Based on gnome-session 3.6.2-0ubuntu5
+
+ -- Clement Lefebvre <root@linuxmint.com>  Sun, 2 Jun 2013 17:46:00 +0000
+
