@@ -1,7 +1,7 @@
 # https://github.com/linuxmint/cinnamon-session
 project('cinnamon-session',
   [ 'c', ],
-  version: '4.0.0',
+  version: '4.2.1',
   meson_version: '>=0.37.0',
 )
 
@@ -30,7 +30,6 @@ endif
 gio         = dependency('gio-2.0')
 gtk3        = dependency('gtk+-3.0',    version: '>=3.0.0')
 glib        = dependency('glib-2.0',    version: '>=2.37.3')
-dbus_glib   = dependency('dbus-glib-1', version: '>=0.88')
 libcanberra = dependency('libcanberra')
 pango       = dependency('pango')
 pangoxft    = dependency('pangoxft', required: false)
@@ -42,12 +41,6 @@ xapp        = dependency('xapp', version: '>=1.0.4')
 xau         = dependency('xau')
 xcomposite  = dependency('xcomposite')
 gl          = dependency('gl')
-
-# We only support old upower
-# https://bugzilla.gnome.org/show_bug.cgi?id=710383
-upower_old  = dependency('upower-glib', version: '<0.99.0', required: false)
-conf.set('HAVE_OLD_UPOWER', upower_old.found())
-
 
 if get_option('with-gconf')
   gconf     = dependency('gconf-2.0')
@@ -196,7 +189,6 @@ message('\n'.join([
 '        Backtrace support:        @0@'.format(backtrace.found()),
 '        XRender support:          @0@'.format(xrender.found()),
 '        XTest support:            @0@'.format(xtest.found()),
-'        Legacy UPower backend:    @0@'.format(upower_old.found()),
 '        Build documentation:      @0@'.format(docbook_enabled),
 '',
 ]))
