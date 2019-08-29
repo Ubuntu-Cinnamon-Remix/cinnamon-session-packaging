@@ -4,16 +4,14 @@ Subject: Comment GDBusConnection method call with a DbusGConnection object
 
 This was causing that users can't logout.
 ---
- cinnamon-session/csm-manager.c | 5 +++++
+ cinnamon-session/csm-manager.c |    5 +++++
  1 file changed, 5 insertions(+)
 
-diff --git a/cinnamon-session/csm-manager.c b/cinnamon-session/csm-manager.c
-index 645a999..2a4c0c8 100644
---- a/cinnamon-session/csm-manager.c
-+++ b/cinnamon-session/csm-manager.c
-@@ -957,6 +957,10 @@ maybe_restart_user_bus (CsmManager *manager)
-         if (!csm_system_is_last_session_for_user (system))
-                 return;
+--- cinnamon-session.git.orig/cinnamon-session/csm-manager.c
++++ cinnamon-session.git/cinnamon-session/csm-manager.c
+@@ -952,6 +952,10 @@ maybe_restart_user_bus (CsmManager *mana
+ 
+         g_debug ("CsmManager: restarting user bus");
  
 +        /*
 +         * g_dbus_connection_call_sync is a GDBusConnection method, our
@@ -22,11 +20,11 @@ index 645a999..2a4c0c8 100644
          reply = g_dbus_connection_call_sync (manager->priv->connection,
                                               "org.freedesktop.systemd1",
                                               "/org/freedesktop/systemd1",
-@@ -968,6 +972,7 @@ maybe_restart_user_bus (CsmManager *manager)
+@@ -963,6 +967,7 @@ maybe_restart_user_bus (CsmManager *mana
                                               -1,
                                               NULL,
                                               &error);
 +        */
  
          if (error != NULL) {
-                 g_debug ("CsmManager: reloading user bus failed: %s", error->message);
+                 g_debug ("CsmManager: restarting user bus failed: %s", error->message);
