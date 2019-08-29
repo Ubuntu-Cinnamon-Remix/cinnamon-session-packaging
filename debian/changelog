@@ -1,8 +1,14 @@
-cinnamon-session (4.0.0-1~) UNRELEASED; urgency=medium
+cinnamon-session (4.0.0-1) unstable; urgency=medium
 
+  [ Norbert Preining ]
   * New upstream release (4.0.0)
 
- -- Norbert Preining <preining@debian.org>  Tue, 11 Dec 2018 19:06:18 +0900
+  [ Maximiliano Curia ]
+  * Add a basic gbp.conf
+  * Add a debian/salsa-ci.yml file
+  * Release to unstable
+
+ -- Maximiliano Curia <maxy@debian.org>  Thu, 29 Aug 2019 12:04:48 -0300
 
 cinnamon-session (3.8.2-1) unstable; urgency=medium
 
