@@ -1,9 +1,10 @@
-cinnamon-session (4.2.1-1~) UNRELEASED; urgency=medium
+cinnamon-session (4.2.1-1) experimental; urgency=medium
 
   * New upstream release (4.2.1)
   * update patch
+  * add myself to uploaders, release to experimental
 
- -- Norbert Preining <norbert@preining.info>  Thu, 29 Aug 2019 13:14:23 +0900
+ -- Norbert Preining <norbert@preining.info>  Sun, 01 Sep 2019 10:55:41 +0900
 
 cinnamon-session (4.0.0-1) unstable; urgency=medium
 
