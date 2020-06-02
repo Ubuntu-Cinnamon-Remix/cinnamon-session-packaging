@@ -5,8 +5,9 @@ cinnamon-session (4.6.1-1) experimental; urgency=medium
 
   [ Norbert Preining ]
   * New upstream release 4.6.1
+  * remove unused libgconf2-dev build-dep (Closes: #959103)
 
- -- Norbert Preining <norbert@preining.info>  Sat, 30 May 2020 23:14:56 +0900
+ -- Norbert Preining <norbert@preining.info>  Wed, 03 Jun 2020 07:36:17 +0900
 
 cinnamon-session (4.4.1-1) unstable; urgency=medium
 
