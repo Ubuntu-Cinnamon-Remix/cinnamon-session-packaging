@@ -77,10 +77,6 @@ Copyright: 1999-2000, Red Hat Inc
            2007, Novell, Inc
 License: LGPL-2+
 
-Files: doc/dbus/spec-to-docbook.xsl
-Copyright: 2007-2008, William Jon McCann
-License: GPL
-
 Files: debian/*
 Copyright: 2013-2014, Linux Mint Project <root@linuxmint.com>
            2014-2018, Debian Cinnamon Team <debian-cinnamon@lists.debian.org>
