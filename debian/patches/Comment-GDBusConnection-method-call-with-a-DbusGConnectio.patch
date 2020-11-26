@@ -7,9 +7,9 @@ This was causing that users can't logout.
  cinnamon-session/csm-manager.c |    5 +++++
  1 file changed, 5 insertions(+)
 
---- cinnamon-session.git.orig/cinnamon-session/csm-manager.c
-+++ cinnamon-session.git/cinnamon-session/csm-manager.c
-@@ -952,6 +952,10 @@ maybe_restart_user_bus (CsmManager *mana
+--- a/cinnamon-session/csm-manager.c
++++ b/cinnamon-session/csm-manager.c
+@@ -953,6 +953,10 @@ maybe_restart_user_bus (CsmManager *mana
  
          g_debug ("CsmManager: restarting user bus");
  
@@ -20,7 +20,7 @@ This was causing that users can't logout.
          reply = g_dbus_connection_call_sync (manager->priv->connection,
                                               "org.freedesktop.systemd1",
                                               "/org/freedesktop/systemd1",
-@@ -963,6 +967,7 @@ maybe_restart_user_bus (CsmManager *mana
+@@ -964,6 +968,7 @@ maybe_restart_user_bus (CsmManager *mana
                                               -1,
                                               NULL,
                                               &error);
