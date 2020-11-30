@@ -2,8 +2,9 @@ cinnamon-session (4.8.0-1~) UNRELEASED; urgency=medium
 
   * New upstream version 4.8.0
   * update patch
+  * Bump inter-cinnamon deps to 4.8
 
- -- Norbert Preining <norbert@preining.info>  Thu, 26 Nov 2020 10:29:52 +0900
+ -- Norbert Preining <norbert@preining.info>  Tue, 01 Dec 2020 08:36:57 +0900
 
 cinnamon-session (4.6.2-1) unstable; urgency=medium
 

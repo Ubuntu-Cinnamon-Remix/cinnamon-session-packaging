@@ -40,16 +40,16 @@ Vcs-Git: https://salsa.debian.org/cinnamon-team/cinnamon-session.git
 Package: cinnamon-session
 Architecture: any
 Depends:
- cinnamon-desktop-data (>= 4.6),
+ cinnamon-desktop-data (>= 4.8),
  cinnamon-session-common (= ${source:Version}),
  default-dbus-session-bus | dbus-session-bus,
  upower (>= 0.9.0),
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends: cinnamon-l10n (>= 4.6)
+Recommends: cinnamon-l10n (>= 4.8)
 Breaks:
- cinnamon (<< 4.6~),
- cinnamon-core (<< 4.6~),
+ cinnamon (<< 4.8~),
+ cinnamon-core (<< 4.8~),
  cinnamon-session-common (<< 2.2.2-5~),
 Replaces: cinnamon-session-common (<< 2.2.2-5~)
 Provides: x-session-manager
