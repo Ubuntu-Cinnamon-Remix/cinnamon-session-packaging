@@ -1,1 +1,2 @@
 Comment-GDBusConnection-method-call-with-a-DbusGConnectio.patch
+upstream-dont-export-vars

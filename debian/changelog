@@ -1,3 +1,10 @@
+cinnamon-session (4.8.0-3) unstable; urgency=medium
+
+  * Cherry-pick upstream fix for uploading several variables to the
+    systemctl user session. (Closes: #986099)
+
+ -- Norbert Preining <norbert@preining.info>  Fri, 21 May 2021 05:57:23 +0900
+
 cinnamon-session (4.8.0-2) unstable; urgency=medium
 
   * Release to unstable.
