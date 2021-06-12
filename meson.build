@@ -1,7 +1,7 @@
 # https://github.com/linuxmint/cinnamon-session
 project('cinnamon-session',
   [ 'c', ],
-  version: '4.8.0',
+  version: '5.0.0',
   meson_version: '>=0.37.0',
 )
 
@@ -137,7 +137,7 @@ conf.set('ENABLE_IPV6', have_ipv6)
 rootInclude = include_directories('.')
 
 conf.set_quoted('PKGDATADIR',         join_paths(get_option('prefix'), get_option('datadir'), meson.project_name()))
-conf.set_quoted('LIBEXECDIR',         get_option('libexecdir'))
+conf.set_quoted('LIBEXECDIR',         join_paths(get_option('prefix'), get_option('libexecdir')))
 conf.set_quoted('LOCALE_DIR',         join_paths(get_option('prefix'), get_option('localedir')))
 
 conf.set_quoted('PACKAGE', meson.project_name())
