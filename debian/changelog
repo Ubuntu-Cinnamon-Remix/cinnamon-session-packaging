@@ -1,3 +1,11 @@
+cinnamon-session (5.0.0-1) experimental; urgency=medium
+
+  * New upstream version 5.0.0
+  * Add myself as Uploader
+  * Update patches
+
+ -- Joshua Peisach <itzswirlz2020@outlook.com>  Sat, 12 Jun 2021 12:04:30 -0400
+
 cinnamon-session (4.8.0-3) unstable; urgency=medium
 
   * Cherry-pick upstream fix for uploading several variables to the
